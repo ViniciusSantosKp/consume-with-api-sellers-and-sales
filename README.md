@@ -1,14 +1,16 @@
 # Api tray sales and sellers
 
-Projeto criado utilizando PHP/Laravel e Kool com o objetivo de criar uma api para:
+Projeto criado utilizando PHP/Laravel, Livewire tailwind.css e Kool com o objetivo de:
+ - criar uma API
  - cadastrar vendedores e vendas.
  - Listar Vendedores
  - Listar vendas totais.
  - Listar vendas de vendedores específicos.
+ - Consumir a API através de uma aplicação isolada
 
 
 O motivo de usar o Kool.dev no projeto é simplificar as configurações docker e diminuir a necessidade de muitos comandos.
-as configurações do docker estão nos arquivos docker-compose.yml e Dockerfile normalmente.
+As configurações do docker estão nos arquivos docker-compose.yml normalmente.
 
 ### Environment Requirements
 
@@ -29,30 +31,10 @@ Em seguida rode os seguintes comandos no terminal (dentro do diretório do proje
 ```
 Para verificar os comandos disponíveis do Kool, acessar o arquivo Kool.yml
 
-Para consumir essa api, foi criado um outro projeto. Para rodar os dois localmente, foi necessário a utilização de um serviço de tunnel (utilizei o Ngrok)
-
-- **[Instalar o Ngrok](https://ngrok.com/docs/getting-started/)**
-
-Depois de instalado e adicionado a chave de autenticação, rodar no terminal no diretório do projeto
+Essa aplicação é uma comodidade para testar localmente a API 'Sellers and Sales' e a aplicação para consumí-la.
+Rodar o comando:
 
 ```bash
-    ngrok http 8989
+    kool run artisan serve --port=7878
 ```
-
-### OBS****
-Outra necessidade é alterar a url da api no arquivo app/Providers/ApiSellersAndSalesProvider na linha 16 no projeto da aplicação que fará o consumo dessa API
-
-```bash
-    -'base_uri' => 'https://localhost:8989',
-    +'base_uri' => 'https://url-fornecida-pelo-ngrok',
-```
-
-Para acessar as funcionalidades de fila, schedule e emails localmente, além de configurar alguma ferramenta de email à sua escolha (como por exemplo o mailtrap) os seguintes comandos serão necessários em terminais distintos:
-
-```bash
-    kool run artisan queue:work
-    kool run artisan schedule:work
-```
-
-Lista de endpoints e payloads esperados:
-- **[Documentação API](https://documenter.getpostman.com/view/17242571/2s9Y5cuLqQ)**
+acessar o localhost na porta 7878 que o serve utiliza.
