@@ -24,3 +24,18 @@ scripts:
   # npm - helpers for JS handling
   npm: kool docker kooldev/node:16 npm
   npx: kool docker kooldev/node:16 npx
+
+  qa:
+    - kool run phpcpd
+    - kool run phpmnd
+    - kool run phan
+    - kool run php-cs-fixer-check
+    - kool run phpmd
+    - kool run php-security-checker
+    - kool run artisan test
+
+  phpqa: kool docker jakzal/phpqa:1.79-php8.1
+  phan: kool run phpqa phan --color -p -l app -iy 5
+  phpcpd: kool run phpqa phpcpd --fuzzy app
+  phpmd: kool run phpqa phpmd app text phpmd/cleancode.xml,phpmd/codesize.xml,phpmd/naming.xml,unusedcode # phpmd/controversial.xml,phpmd/design.xml with erros
+  phpmnd: kool run phpqa phpmnd app --ignore-funcs=round,sleep,abort,strpad,number_format --exclude=tests --progress --extensions=default_parameter,-return,argument

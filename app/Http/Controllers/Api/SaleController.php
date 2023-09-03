@@ -27,7 +27,8 @@ class SaleController extends Controller
                 'payload' => $request->all(),
             ]);
 
-            return response()->json(['error' => 'An error occurred while saving the sale.'], 500);
+            $error = 500;
+            return response()->json(['error' => 'An error occurred while saving the sale.'], $error);
         }
     }
 
@@ -44,7 +45,8 @@ class SaleController extends Controller
                 'payload' => $seller_id,
             ]);
 
-            return response()->json(['error' => 'An error occurred while retrieving the sales.'], 500);
+            $error = 500;
+            return response()->json(['error' => 'An error occurred while retrieving the sales.'], $error);
         }
     }
 
@@ -60,7 +62,8 @@ class SaleController extends Controller
                 'code' => $e->getCode(),
             ]);
 
-            return response()->json(['error' => 'An error occurred while retrieving the sales.'], 500);
+            $error = 500;
+            return response()->json(['error' => 'An error occurred while retrieving the sales.'], $error);
         }
     }
 }

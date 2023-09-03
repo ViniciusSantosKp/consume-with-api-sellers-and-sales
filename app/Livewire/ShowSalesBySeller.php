@@ -5,25 +5,26 @@ namespace App\Livewire;
 use App\Actions\GetSalesBySellerIdAction;
 use App\Actions\GetSellerByIdAction;
 use App\Actions\SaveSaleAction;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Arr;
 use Livewire\Component;
 
 class ShowSalesBySeller extends Component
 {
-    public $sellerId = '';
-    public $value = '';
+    public $sellerId = 0;
+    public $value = 0.00;
     public $seller = [];
 
     protected $rules = [
         'value' => 'required|numeric|min:0.01',
     ];
 
-    public function mount($sellerId):void
+    public function mount($sellerId) : void
     {
         $this->sellerId = $sellerId;
     }
 
-    public function render()
+    public function render() : View
     {
         $sales = (new GetSalesBySellerIdAction)($this->sellerId);
         $this->seller = (new GetSellerByIdAction)($this->sellerId);
@@ -37,7 +38,7 @@ class ShowSalesBySeller extends Component
         ]);
     }
 
-    public function saveSale():array
+    public function saveSale() : array
     {
         $this->validate();
 
