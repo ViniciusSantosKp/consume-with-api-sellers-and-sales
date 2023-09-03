@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Sale;
+use App\Models\Seller;
 use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Tests\TestCase;
 
@@ -56,7 +57,7 @@ class RequestTest extends TestCase
 
         $response = $this->post('/api/sales', [
             'value' => $factory['value'],
-            'seller' => 1,
+            'seller' => Seller::first()->id,
         ]);
 
         $response->assertCreated();
