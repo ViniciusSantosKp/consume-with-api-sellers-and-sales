@@ -6,7 +6,7 @@ use App\Facades\ApiSellersAndSalesFacade;
 
 class SaveSaleAction
 {
-    public function __invoke($value, $sellerId)
+    public function __invoke(float $value, int $sellerId):array
     {
         $dataToSave = [
             'value' => $value,
@@ -24,7 +24,7 @@ class SaveSaleAction
                 'code' => $e->getCode(),
             ]);
 
-            return;
+            return [];
         }
     }
 }

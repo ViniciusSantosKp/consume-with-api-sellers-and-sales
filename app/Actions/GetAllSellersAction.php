@@ -6,7 +6,7 @@ use App\Facades\ApiSellersAndSalesFacade;
 
 class GetAllSellersAction
 {
-    public function __invoke()
+    public function __invoke():array
     {
         try {
             $response = ApiSellersAndSalesFacade::get('api/sellers');
@@ -19,7 +19,7 @@ class GetAllSellersAction
                 'code' => $e->getCode(),
             ]);
 
-            return;
+            return[];
         }
     }
 }

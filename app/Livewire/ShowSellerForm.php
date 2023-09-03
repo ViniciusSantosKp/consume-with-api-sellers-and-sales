@@ -38,7 +38,7 @@ class ShowSellerForm extends Component
         ]);
     }
 
-    public function saveSeller()
+    public function saveSeller():array
     {
         $this->validate();
 
@@ -50,7 +50,7 @@ class ShowSellerForm extends Component
         return $seller;
     }
 
-    public function getAllSellers()
+    public function getAllSellers():array
     {
         $response = ApiSellersAndSalesFacade::get('api/sellers');
 

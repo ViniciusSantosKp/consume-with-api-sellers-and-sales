@@ -6,7 +6,7 @@ use App\Facades\ApiSellersAndSalesFacade;
 
 class GetSellerByIdAction
 {
-    public function __invoke($seller_id)
+    public function __invoke(int $seller_id):array
     {
         try {
             $response = ApiSellersAndSalesFacade::get("api/seller/$seller_id");
@@ -19,7 +19,7 @@ class GetSellerByIdAction
                 'code' => $e->getCode(),
             ]);
 
-            return;
+            return ['error' => $e->getMessage()];
         }
     }
 }

@@ -18,7 +18,7 @@ class ShowSalesBySeller extends Component
         'value' => 'required|numeric|min:0.01',
     ];
 
-    public function mount($sellerId)
+    public function mount($sellerId):void
     {
         $this->sellerId = $sellerId;
     }
@@ -28,12 +28,16 @@ class ShowSalesBySeller extends Component
         $sales = (new GetSalesBySellerIdAction)($this->sellerId);
         $this->seller = (new GetSellerByIdAction)($this->sellerId);
 
+        if ($message = Arr::get($this->seller, 'message')) {
+            abort(404, $message);
+        }
+
         return view('livewire.show-sales-by-seller', [
             'sales' => Arr::get($sales, 'data'),
         ]);
     }
 
-    public function saveSale()
+    public function saveSale():array
     {
         $this->validate();
 

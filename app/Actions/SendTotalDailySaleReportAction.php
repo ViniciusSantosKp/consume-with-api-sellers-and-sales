@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Mail;
 
 class SendTotalDailySaleReportAction
 {
-    public function __invoke()
+    public function __invoke():void
     {
         $saleRepository = new SaleRepository();
         $sellerRepository = new SellerRepository();
