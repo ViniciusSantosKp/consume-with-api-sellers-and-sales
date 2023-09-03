@@ -13,7 +13,7 @@ class ApiSellersAndSalesProvider extends ServiceProvider
         $this->app->bind('api-sellers-and-sales', function() {
             return Http::withOptions([
                 'verify' => false,
-                'base_uri' => 'https://localhost:7878',
+                'base_uri' => 'http://localhost:7878',
             ])
             ->withHeaders([
                 'Accept' => 'application/json',
